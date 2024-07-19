@@ -1,5 +1,6 @@
 import os
 import autogen
+import pprint
 from autogen import AssistantAgent, UserProxyAgent, ConversableAgent
 
 avi = ConversableAgent(
@@ -16,4 +17,7 @@ loh = ConversableAgent(
     human_input_mode="NEVER",
 )
 
-result = loh.initiate_chat(avi, message="avi, why are you adding eggs to the lemon rice?", max_turns=3)
+chat_result = loh.initiate_chat(avi, message="avi, why are you adding eggs to the lemon rice?", max_turns=3,summary_method="reflection_with_llm",
+    summary_prompt="Summarize the conversation",)
+pprint.pprint(chat_result.summary)
+pprint.pprint(chat_result.cost)
